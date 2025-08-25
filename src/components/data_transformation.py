@@ -10,7 +10,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 import  os
 from src.utils import save_object
-import dill
+
 
 @dataclass
 class DataTransformationConfig:
@@ -40,8 +40,8 @@ class DataTransformation:
             cat_pipeline = Pipeline(
                 steps=[
                     ('imputer', SimpleImputer(strategy='most_frequent')),
-                    ('one_hot_encoder', OneHotEncoder()),
-                    ('scaler', StandardScaler())
+                    ('one_hot_encoder', OneHotEncoder(handle_unknown='ignore',sparse_output=True)),
+                    ('scaler', StandardScaler(with_mean=False))
                 ])
             logging.info(f"Numerical columns encoding completed: {numerical_columns}")
             logging.info(f"Categorical columns encoding completed: {categorical_columns}")
