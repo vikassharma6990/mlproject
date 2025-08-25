@@ -3,8 +3,7 @@ numpy
 seaborn
 matplotlib
 scikit-learn
-vaex
-bokeh
 catboost
 xgboost
+dill
 #-e .
